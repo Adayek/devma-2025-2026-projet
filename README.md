@@ -1,49 +1,66 @@
 # EcoBudget 🌿
 
-Dépôt de base pour le projet du cours de développement mobile avancé.
+Application de gestion de budget, développée dans le cadre du cours de développement mobile avancé.
 
-# Module shared
-    * New module Java or Kotlin library
-    * Supprission du contenu ./build.gradle.kts et synchronisation 
-    * suppression du repertoire Main du dossier shared/src
-    * Ajout des plugins dans build.gradle.kts
-    * Ajout des dépendances dans build.gradle.kts
+## Réalisé par
 
-# Création du module commonMain, androidMain, iosMain
+ADAYÉ Kouamé Appoh Éric Stéphane
 
-# Module app
-    * ajout du module implementation(project(":shared")) pour faire la liaison entre les modules app et shared
-    * synchronisation des dépendances dans build.gradle.kts
+## Description du projet
 
-# Suppression de la dependence implementation(libs.kotlinx.coroutines.core)
-
-# Migration des models vers le module shared
-    * Migration des models
-
-# Ajout du module composeRessources dans commonMain
-    - Ajoute de string.xml
-
-# Migration des couches Données et Présentation
-    - Migration de data.repository
-    - Migration de viewmodel
-
-# Problème rencontrés
-    * Erreur rencontrés suite à la synchronisation de builde.gradle;
-    * Problème lors de la migration du model categorie suite au code android pure présent dans le model
-    * Problème lors de la migration de yearMonth suite à la bibliothèque Calandar qui est propre à android
-    * problème d'importation du model transaction
-    * problème avec la bibliothèque android Calandar
-    * problème au niveau de la génération des UUID
-    * Problème au niveau de Ressource partager string.xml
+EcoBudget permet de suivre les dépenses, visualiser le budget restant et organiser les catégories de dépenses sur une période donnée. Le projet a été conçu avec une architecture multi-platform, en séparant la logique métier et les couches de présentation.
 
 
-# Solution trouvée
-    - Correction apporter dans build.gradle.kts : Rétirer le bloc android du block kotklin 
-    - Intégrer ComposeMultiPlatform
-    - Faire clean project puis synchroniser le project
-    - Importer les ressources dans catégorie.kt
-    - Remplacer la fonction calandar d'android par des bibliothèques date de Kotlin
-    - ajout de @Immutable au data class Transaction
-    - Remplacer la fonction calandar d'android par des bibliothèques date de Kotlin
-    - Mise en place d'un module partager UUID dans utils pour faire la liaison en Android et IOS
-    - Ajout Ressources pour la partie UI 
+## Étapes de mise en place
+
+### Module shared
+- Création du module Kotlin library
+- Suppression du contenu du fichier `build.gradle.kts` et synchronisation
+- Suppression du dossier `Main` dans `shared/src`
+- Ajout des plugins nécessaires
+- Ajout des dépendances requises
+
+### Création des modules commonMain, androidMain et iosMain
+- Mise en place de la structure Kotlin Multiplatform
+- Préparation des sources selon les cibles de compilation
+
+### Module app
+- Ajout de la dépendance `implementation(project(":shared"))`
+- Synchronisation des dépendances dans le module `app`
+
+### Nettoyage et migration
+- Suppression de la dépendance `implementation(libs.kotlinx.coroutines.core)`
+- Migration des modèles vers le module `shared`
+- Ajout du module `composeResources` dans `commonMain`
+- Migration des couches Data et Presentation
+- Intégration des ressources partagées (`string.xml`)
+
+## Problèmes rencontrés et solutions
+
+- Erreur lors de la synchronisation du fichier `build.gradle.kts`
+  - Correction : suppression du bloc `android` dans le bloc `kotlin`
+
+- Problème lors de la migration du modèle `categorie` à cause de code Android pur
+  - Solution : nettoyer le projet puis resynchroniser
+  - Ajout de `ComposeMultiplatform`
+
+- Problème lié à `YearMonth` et à la bibliothèque `Calendar` propre à Android
+  - Solution : remplacement par les bibliothèques de date de Kotlin
+  - Import des ressources nécessaires dans `categorie.kt`
+
+- Problème d'importation du modèle `Transaction`
+  - Solution : ajout de l'annotation `@Immutable` sur le `data class Transaction`
+
+- Problème lié à la génération des UUID
+  - Solution : mise en place d'un module partagé `utils` pour assurer la compatibilité Android/iOS
+
+- Problème avec les ressources partagées
+  - Solution : ajout de fichiers de ressources pour l'interface utilisateur
+
+## Capture de l'application
+
+![Capture EcoBudget](./WhatsApp%20Image%202026-09-27%20at%2020.07.26.jpeg)
+
+## Conclusion
+
+Ce projet a permis de mettre en pratique les bonnes pratiques de développement Kotlin Multiplatform, la gestion des ressources partagées et l’architecture d’une application mobile orientée budget.
