@@ -34,6 +34,7 @@ Dépôt de base pour le projet du cours de développement mobile avancé.
     * problème d'importation du model transaction
     * problème avec la bibliothèque android Calandar
     * problème au niveau de la génération des UUID
+    * Problème au niveau de Ressource partager string.xml
 
 
 # Solution trouvée
@@ -45,4 +46,4 @@ Dépôt de base pour le projet du cours de développement mobile avancé.
     - ajout de @Immutable au data class Transaction
     - Remplacer la fonction calandar d'android par des bibliothèques date de Kotlin
     - Mise en place d'un module partager UUID dans utils pour faire la liaison en Android et IOS
-
+    - Ajout Ressources pour la partie UI 
