@@ -23,10 +23,18 @@ Dépôt de base pour le projet du cours de développement mobile avancé.
 # Ajout du module composeRessources dans commonMain
     - Ajoute de string.xml
 
+# Migration des couches Données et Présentation
+    - Migration de data.repository
+    - Migration de viewmodel
+
 # Problème rencontrés
     * Erreur rencontrés suite à la synchronisation de builde.gradle;
     * Problème lors de la migration du model categorie suite au code android pure présent dans le model
     * Problème lors de la migration de yearMonth suite à la bibliothèque Calandar qui est propre à android
+    * problème d'importation du model transaction
+    * problème avec la bibliothèque android Calandar
+    * problème au niveau de la génération des UUID
+
 
 # Solution trouvée
     - Correction apporter dans build.gradle.kts : Rétirer le bloc android du block kotklin 
@@ -34,5 +42,7 @@ Dépôt de base pour le projet du cours de développement mobile avancé.
     - Faire clean project puis synchroniser le project
     - Importer les ressources dans catégorie.kt
     - Remplacer la fonction calandar d'android par des bibliothèques date de Kotlin
-
+    - ajout de @Immutable au data class Transaction
+    - Remplacer la fonction calandar d'android par des bibliothèques date de Kotlin
+    - Mise en place d'un module partager UUID dans utils pour faire la liaison en Android et IOS
 

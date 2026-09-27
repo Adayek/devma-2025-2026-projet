@@ -1,5 +1,7 @@
 package com.example.model
 
+import androidx.compose.runtime.Immutable
+
 /**
  * Modèle de données immuable représentant une transaction / dépense au sein d'EcoBudget.
  *
@@ -9,6 +11,7 @@ package com.example.model
  * @property date Horodatage (timestamp en millisecondes) de l'enregistrement de la dépense.
  * @property category Catégorie associée à la dépense (TRANSPORT, ALIMENTATION, LOISIRS, LOGEMENT).
  */
+@Immutable
 data class Transaction(
     val id: String,
     val title: String,

@@ -12,7 +12,7 @@ interface TransactionRepository {
     /**
      * Récupère le flux asynchrone et réactif de l'ensemble des transactions.
      *
-     * @return [Flow] émettant la liste mise à jour des [Transaction].
+     * @return [kotlinx.coroutines.flow.Flow] émettant la liste mise à jour des [Transaction].
      */
     fun getTransactions(): Flow<List<Transaction>>
 

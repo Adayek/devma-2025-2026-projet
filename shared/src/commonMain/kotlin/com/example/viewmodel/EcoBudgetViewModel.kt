@@ -7,14 +7,18 @@ import com.example.data.repository.TransactionRepository
 import com.example.model.Category
 import com.example.model.Transaction
 import com.example.model.YearMonth
+import com.example.utils.generateUUID
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import java.util.Calendar
-import java.util.UUID
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
+import kotlin.random.Random
 
 /**
  * Classe de données immuable représentant l'état complet de l'interface pour EcoBudget.
@@ -230,18 +234,19 @@ class EcoBudgetViewModel(
                 // Création d'une nouvelle transaction dans le mois affiché
                 val currentYearMonth = _currentMonth.value
                 val dateToUse = if (currentYearMonth == YearMonth.current()) {
-                    System.currentTimeMillis()
+                    Clock.System.now().toEpochMilliseconds()
                 } else {
-                    val cal = Calendar.getInstance()
-                    cal.set(Calendar.YEAR, currentYearMonth.year)
-                    cal.set(Calendar.MONTH, currentYearMonth.month)
-                    cal.set(Calendar.DAY_OF_MONTH, 15)
-                    cal.set(Calendar.HOUR_OF_DAY, 12)
-                    cal.timeInMillis
+                    LocalDateTime(
+                        year = currentYearMonth.year,
+                        monthNumber = currentYearMonth.month,
+                        dayOfMonth = 15,
+                        hour = 12,
+                        minute = 0
+                    ).toInstant(TimeZone.currentSystemDefault()).toEpochMilliseconds()
                 }
 
                 val newTransaction = Transaction(
-                    id = UUID.randomUUID().toString(),
+                    id = generateUUID(),
                     title = title.trim(),
                     amount = amount,
                     date = dateToUse,
